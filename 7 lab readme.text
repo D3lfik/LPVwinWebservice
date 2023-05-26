@@ -1,0 +1,99 @@
+Create a Web Service:
+
+Open Visual Studio and create a new project.
+Choose the ASP.NET Web Service Application template.
+This will create a new project with a default web service.
+Define Web Service Methods:
+
+Open the default Service1.asmx.cs file.
+Define your web service methods by adding [WebMethod] attribute above the method you want to expose.
+Implement the method logic inside the method body.
+Build the web service project.
+Test the Web Service:
+
+Press F5 or use the Debug menu to run the web service locally.
+The web service test page will open in your browser.
+
+
+
+[webMethod}
+public DataTable = returnTable()
+{
+    Datatable dt = new DataTable("Table_name");
+    dt.Columns.Add("COLUMN_NAME",typeof(string));
+    dt.Rows.Add("ROW_NAME", "String name");
+    return dt;
+}
+
+
+Create a Windows Forms Application:
+
+Open Visual Studio and create a new Windows Forms Application project.
+Design your Windows Forms UI as needed.
+
+
+set data column name property to "COLUMN_NAME"
+
+
+Create a Windows Forms Application:
+
+Open Visual Studio and create a new Windows Forms Application project.
+Design your Windows Forms UI as needed.
+Add Web Reference to the Windows Forms Application:
+
+Right-click on the Windows Forms Application project in Solution Explorer.
+Select "Add Service Reference".
+Enter the URL of your web service (e.g., http://localhost:port/Service1.asmx).
+Click "Go" and then "OK" to generate the proxy code for the web service.
+Call the Web Service Methods in Windows Forms Application:
+
+In your Windows Forms application, you can now access the web service methods using the generated proxy code.
+Create an instance of the web service proxy class.
+Call the web service methods using the proxy instance and pass any required parameters.
+Retrieve and process the response from the web service.
+
+
+
+
+---------------------------------------------------------------------------------------------------x
+
+c#
+
+
+
+------------------------
+
+
+using System;
+using System.Windows.Forms;
+using YourWebServiceNameSpace;
+
+namespace WindowsFormsApp
+{
+    public partial class MainForm : Form
+    {
+        Service.webService wbService = new Service.webService();
+
+        public MainForm()
+        {
+            InitializeComponent();
+        }
+
+        private void btnCallHello_Click(object sender, EventArgs e)
+        {
+           lblReturnHello.text = wbService.HelloWorld();
+        }
+       
+        private void btnCallTable_Click(object sender, EventArgs e)
+        {
+           DataTable dt = new DataTable();
+           dt = wbService.returnTable();
+
+           dataGridView1.DataSource = dt;
+        }
+    }
+}
+
+
+
+
